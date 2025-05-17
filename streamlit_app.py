@@ -6,7 +6,7 @@ from pathlib import Path
 from streamlit_gsheets import GSheetsConnection
 from datetime import date
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.service_account import Credentials
 
 
 # Set the title and favicon that appear in the Browser's tab bar.
@@ -14,6 +14,39 @@ st.set_page_config(
     page_title='Mochi Health Mood Tracker',
 )
 
+st.write("Secrets loaded:", st.secrets)
+
+# def get_gspread_client():
+#     scope = [
+#         "https://www.googleapis.com/auth/spreadsheets",
+#         "https://www.googleapis.com/auth/drive"
+#     ]
+#     creds_dict = st.secrets["gcp_service_account"]
+#     creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
+#     return gspread.authorize(creds)
+
+# @st.cache_resource
+# def get_sheet():
+#     client = get_gspread_client()
+#     sheet = client.open("Your Sheet Name") # Name, not URL
+#     return sheet.sheet1 # First tab
+
+# @st.cache_data(ttl=60)
+# def load_data(sheet):
+#     return pd.DataFrame(sheet.get_all_records())
+
+# def main():
+#     st.title("Google Sheets Reader")
+
+#     try:
+#         sheet = get_sheet()
+#         df = load_data(sheet)
+#         st.dataframe(df)
+
+#     except Exception as e:
+#         st.error(f"Error: {e}")
+
+# main()
 # -----------------------------------------------------------------------------
 # Declare some useful functions.
 
